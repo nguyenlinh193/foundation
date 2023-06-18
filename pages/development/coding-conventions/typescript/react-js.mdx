@@ -1,0 +1,112 @@
+# React JS
+
+# Naming
+
+1. Use jsx extensions for components, screens etc.
+2. Use PascalCase for files with the jsx extension:
+
+```
+components/
+├── Button/
+│   ├── index.jsx
+│   ├── index.test.jsx
+screens/
+├── Home/
+│   ├── index.jsx
+│   ├── index.test.jsx
+```
+3. Use camelCase for all other files with a js extension:
+
+```
+lib/
+├── requestManager.js
+├── requestManager.test.js
+helpers/
+├── userHelper.js
+├── userHelper.test.js
+```
+4. Use camelCase for variables and functions:
+
+```
+// 🚩 Don't
+let form_params = {};
+
+function FetchParams() {
+  return {};
+}
+```
+
+```
+// ✅ Do
+let formParams = {};
+
+function fetchParams() {
+  return {};
+}
+```
+
+5. Use PascalCase for classes:
+
+```
+// 🚩 Don't
+class product_form {}
+class productForm {}
+```
+
+```
+// ✅ Do
+class ProductForm {}
+```
+
+6. Use SCREAMING_SNAKE_CASE for constants:
+
+```
+// 🚩 Don't
+const fetchLimit = 25;
+```
+
+```
+// ✅ Do
+const FETCH_LIMIT = 25;
+```
+
+7. Use PascalCase for components and camelCase for their instances:
+
+```
+// 🚩 Don't
+import menuCard from './MenuCard';
+```
+
+```
+// ✅ Do
+import MenuCard from './MenuCard';
+```
+
+```
+// 🚩 Don't
+const MenuIten = <MenuCard />;
+```
+
+```
+// ✅ Do
+const menuItem = <MenuCard />;
+```
+
+8. Use camelCase for prop names and PascalCase if the prop value is a React component:
+
+```
+// 🚩 Don't
+<Foo
+  UserName='hello'
+  phone_number={ 12345678 }
+/>
+```
+
+```
+// ✅ Do
+<Foo
+  userName='hello'
+  phoneNumber={ 12345678 }
+  Component={ SomeComponent }
+/>
+```

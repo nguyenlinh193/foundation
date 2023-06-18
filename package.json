@@ -1,0 +1,27 @@
+{
+  "name": "digital-fortress-foundation",
+  "version": "0.0.1",
+  "description": "Digital Fortress Foundation",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shuding/nextra-docs-template.git"
+  },
+  "author": "Digital Fortress Co., Ltd. <hello@digitalfortress.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^13.0.6",
+    "nextra": "latest",
+    "nextra-theme-docs": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "typescript": "^4.9.3"
+  }
+}
