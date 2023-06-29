@@ -110,3 +110,23 @@ const menuItem = <MenuCard />;
   Component={ SomeComponent }
 />
 ```
+
+9. Event and handler naming
+- `on` as in `onEventName` for component attributes.
+- `handle` as in `handleEventName` for handling child component events.
+
+- Should follow this construct:
+
+`on/handle` + `Noun` + `Action`, e.g. `onModalMenuToggle`
+
+```
+// 🚩 Don't
+const onSubmit
+const handleSubmit
+```
+
+```
+// ✅ Do
+const onRegistrationSubmit
+const handleRegistrationButtonClick
+```
