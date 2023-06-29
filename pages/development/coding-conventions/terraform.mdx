@@ -1,0 +1,99 @@
+# Terrafrom Coding
+
+## Code Structure
+
+---
+**NOTE**
+
+The Code Structure will be updated regulary to match the technology and users needs and level of the developer .
+
+---
+1. Structuring of Terrafrom configurations
+- <mark>main.tf</mark> call modules, locals, and data sources to create all resources
+- <mark>variables.tf</mark> contains declarations of variables used in <mark>main.tf</mark>
+- <mark>outputs.tf</mark> contains outputs from the resources created in <mark>main.tf</mark>
+- <mark>versions.tf</mark> contains version requirements for Terraform and providers
+- <mark>terraform.tfvars</mark>  Specify their values in a variable definitions file
+
+2. Structure folder
+```
+enviroment/
+├── develop/
+│   ├── main.tf
+|   ├── terraform.tfvars
+|   ├── outputs.tf
+|   ├── outputs.tf
+|   ├── variables.tf
+├── stagion/
+├── production/
+modules/
+```
+
+## Naming conventions
+1. Use _ (underscore) instead of - (dash) everywhere (in resource names, data source names, variable names, outputs, etc).
+2. Use lowercase letters and numbers.
+
+### Resource and data source arguments
+1. Do not repeat resource type in resource name (not partially, nor completely)
+```
+// ✅ Do
+`resource "aws_route_table" "public" {}`
+```
+
+
+```
+// 🚩 Don't
+`resource "aws_route_table" "public_route_table" {}`
+```
+
+```
+// 🚩 Don't
+`resource "aws_route_table" "public_aws_route_table" {}`
+```
+
+### Variables
+- Order keys in a variable block like this: description , type, default
+- Always include description on all variables even if you think it is obvious (you will need it in the future).
+- Prefer using simple types (number, string, list(...), map(...), any) over specific type like object() unless you need to have strict constraints on each key
+- Use type any to disable type validation starting from a certain depth or when multiple types should be supported.
+
+
+### Outputs
+- Good structure for the name of output looks like ```{name}_{type}_{attribute}```
+    - ```{name}``` is a resource or data source name without a provider prefix. ```{name}``` for ```aws_subnet``` is ```subnet```, ```foraws_vpc``` it is ```vpc```.
+    - ```{type}``` is a type of a resource sources
+    - ```{attribute}``` is an attribute returned by the output
+- If the output is returning a value with interpolation functions and multiple resources, ```{name}``` and ```{type}```
+- Always include description for all outputs even if you think it is obvious.
+
+```
+// ✅ Do
+output "security_group_id" {
+  description = "The ID of the security group"
+  value       = aws_security_group.web.id
+}
+```
+
+```
+// 🚩 Don't
+output "this_security_group_id" {
+  value       = aws_security_group.web.id
+}
+```
+## Management Terraform State
+- Use backend defines to store state data files
+
+### S3 Store state
+- Stores the state as a given key in a given bucket on Amazon S3.
+
+```
+// ✅ Example
+terraform {
+  backend "s3" {
+    bucket = "mybucket"
+    key    = "path/to/my/key"
+    region = "us-east-1"
+  }
+}
+
+```
