@@ -130,3 +130,143 @@ const handleSubmit
 const onRegistrationSubmit
 const handleRegistrationButtonClick
 ```
+
+# Variables
+
+1. Use the same vocabulary for the same type of variable
+```
+// 🚩 Don't
+getUserInfo();
+getClientData();
+getCustomerRecord();
+```
+
+```
+// ✅ Do
+getUser();
+getClient();
+```
+
+2. Use explanatory variables
+// 🚩 Don't
+const address = "One Infinite Loop, Cupertino 95014";
+const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+saveCityZipCode(
+  address.match(cityZipCodeRegex)[1],
+  address.match(cityZipCodeRegex)[2]
+);
+```
+
+```
+// ✅ Do
+const address = "One Infinite Loop, Cupertino 95014";
+const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
+saveCityZipCode(city, zipCode);
+```
+
+3. Avoid Mental Mapping
+- Explicit is better than implicit.
+
+// 🚩 Don't
+const locations = ["Austin", "New York", "San Francisco"];
+locations.forEach(l => {
+  //doSomeOtherStuff();
+  // ...
+  // ...
+  // What is `l` for again?
+  callback(l);
+});
+```
+
+```
+// ✅ Do
+const locations = ["Austin", "New York", "San Francisco"];
+locations.forEach(location => {
+  doSomeOtherStuff();
+  // ...
+  // ...
+  callback(location);
+});
+```
+
+4. Use default parameters instead of short circuiting or conditionals
+- Default parameters are often cleaner than short circuiting. Be aware that if you use them, your function will only provide default values for `undefined` arguments. Other "falsy" values such as '', "", false, null, 0, and NaN, will not be replaced by a default value.
+
+// 🚩 Don't
+function createUser(name) {
+  const userName = name || "Jun Co";
+  // ...
+}
+```
+
+```
+// ✅ Do
+function createUser(name = "Jun Co") {
+  // ...
+}
+```
+5. Use searchable names
+
+// 🚩 Don't
+setTimeout(blastOff, 86400000);
+```
+
+```
+// ✅ Do
+// Declare them as capitalized named constants.
+const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
+
+setTimeout(blastOff, MILLISECONDS_PER_DAY);
+```
+
+# functions
+----
+1. Function arguments
+
+// 🚩 Don't
+function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+
+createMenu("Foo", "Bar", "Baz", true);
+```
+
+```
+// ✅ Do
+function createMenu({ title, body, buttonText, cancellable }) {
+  // ...
+}
+
+createMenu({
+  title: "Foo",
+  body: "Bar",
+  buttonText: "Baz",
+  cancellable: true
+});
+```
+2. Remove dead code
+- Dead code is just as bad as duplicate code. There's no reason to keep it in your codebase. If it's not being called, get rid of it! It will still be safe in your version history if you still need it.
+
+// 🚩 Don't
+function oldRequestModule(url) {
+  // ...
+}
+
+function newRequestModule(url) {
+  // ...
+}
+
+const req = newRequestModule;
+inventoryTracker("apples", req, "www.inventory-awesome.io");
+```
+
+```
+// ✅ Do
+function newRequestModule(url) {
+  // ...
+}
+
+const req = newRequestModule;
+inventoryTracker("apples", req, "www.inventory-awesome.io");
+```
