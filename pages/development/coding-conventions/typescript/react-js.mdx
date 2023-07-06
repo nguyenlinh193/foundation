@@ -210,6 +210,7 @@ function createUser(name = "Jun Co") {
   // ...
 }
 ```
+
 5. Use searchable names
 
 ```
@@ -251,6 +252,7 @@ createMenu({
   cancellable: true
 });
 ```
+
 2. Remove dead code
 - Dead code is just as bad as duplicate code. There's no reason to keep it in your codebase. If it's not being called, get rid of it! It will still be safe in your version history if you still need it.
 
@@ -281,6 +283,7 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 # Typescript
 
 1. Naming without `I` prefix and `Type` surfix
+```
 // 🚩 Don't
 interface EducationType {
   id: string;
