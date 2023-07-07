@@ -211,7 +211,7 @@ function createUser(name = "Jun Co") {
 }
 ```
 
-5. Use searchable names
+### 5. Use searchable names
 
 ```
 // 🚩 Don't
@@ -226,9 +226,9 @@ const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
-# Functions
+## Functions
 
-1. Function arguments
+### 1. Function arguments
 
 ```
 // 🚩 Don't
@@ -253,7 +253,7 @@ createMenu({
 });
 ```
 
-2. Remove dead code
+### 2. Remove dead code
 - Dead code is just as bad as duplicate code. There's no reason to keep it in your codebase. If it's not being called, get rid of it! It will still be safe in your version history if you still need it.
 
 ```
@@ -280,9 +280,9 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-# Typescript
+## Typescript
 
-1. Naming without `I` prefix and `Type` surfix
+### 1. Naming without `I` prefix and `Type` surfix
 ```
 // 🚩 Don't
 interface EducationType {
@@ -311,7 +311,7 @@ interface User {
 }
 ```
 
-2. Interface names and interface member
+### 2. Interface names and the interface member
 - Use PascalCase for interface names.
 - Use camelCase for interface members.
 - Use whole words in names when possible.
