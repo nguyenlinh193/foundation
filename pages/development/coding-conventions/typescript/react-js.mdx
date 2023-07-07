@@ -210,6 +210,7 @@ function createUser(name = "Jun Co") {
   // ...
 }
 ```
+
 5. Use searchable names
 
 ```
@@ -251,6 +252,7 @@ createMenu({
   cancellable: true
 });
 ```
+
 2. Remove dead code
 - Dead code is just as bad as duplicate code. There's no reason to keep it in your codebase. If it's not being called, get rid of it! It will still be safe in your version history if you still need it.
 
@@ -277,3 +279,68 @@ function newRequestModule(url) {
 const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
+
+# Typescript
+
+1. Naming without `I` prefix and `Type` surfix
+```
+// 🚩 Don't
+interface EducationType {
+  id: string;
+  //...
+}
+
+interface IUser {
+  firstName: string;
+  lastName: string;
+  //...
+}
+```
+
+```
+// ✅ Do
+interface Education {
+  id: string;
+  //...
+}
+
+interface User {
+  firstName: string;
+  lastName: string;
+  //...
+}
+```
+
+2. Interface names and interface member
+- Use PascalCase for interface names.
+- Use camelCase for interface members.
+- Use whole words in names when possible.
+
+```
+// 🚩 Don't
+interface hondaCar {
+  id: string;
+  //...
+}
+
+interface hondaCar {
+  created_at: number;
+  updated_at: number;
+  //...
+}
+```
+
+```
+// ✅ Do
+interface HondaCar {
+  id: string;
+  //...
+}
+
+interface HondaCar {
+  createdAt: number;
+  updatedAt: number;
+  //...
+}
+```
+
