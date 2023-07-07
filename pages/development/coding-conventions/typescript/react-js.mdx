@@ -1,9 +1,9 @@
 # React JS
 
-# Naming
+## Naming
 
-1. Use jsx extensions for components, screens etc.
-2. Use PascalCase for files with the jsx extension:
+### 1. Use JSX extensions for components, screens etc.
+### 2. Use PascalCase for files with the jsx extension:
 
 ```
 components/
@@ -15,7 +15,7 @@ screens/
 │   ├── index.jsx
 │   ├── index.test.jsx
 ```
-3. Use camelCase for all other files with a js extension:
+### 3. Use camelCase for all other files with a js extension:
 
 ```
 lib/
@@ -25,7 +25,7 @@ helpers/
 ├── userHelper.js
 ├── userHelper.test.js
 ```
-4. Use camelCase for variables and functions:
+### 4. Use camelCase for variables and functions:
 
 ```
 // 🚩 Don't
@@ -45,7 +45,7 @@ function fetchParams() {
 }
 ```
 
-5. Use PascalCase for classes:
+### 5. Use PascalCase for classes:
 
 ```
 // 🚩 Don't
@@ -58,7 +58,7 @@ class productForm {}
 class ProductForm {}
 ```
 
-6. Use SCREAMING_SNAKE_CASE for constants:
+### 6. Use SCREAMING_SNAKE_CASE for constants:
 
 ```
 // 🚩 Don't
@@ -70,7 +70,7 @@ const fetchLimit = 25;
 const FETCH_LIMIT = 25;
 ```
 
-7. Use PascalCase for components and camelCase for their instances:
+### 7. Use PascalCase for components and camelCase for their instances:
 
 ```
 // 🚩 Don't
@@ -92,7 +92,7 @@ const MenuIten = <MenuCard />;
 const menuItem = <MenuCard />;
 ```
 
-8. Use camelCase for prop names and PascalCase if the prop value is a React component:
+### 8. Use camelCase for prop names and PascalCase if the prop value is a React component:
 
 ```
 // 🚩 Don't
@@ -111,7 +111,7 @@ const menuItem = <MenuCard />;
 />
 ```
 
-9. Event and handler naming
+### 9. Event and handler naming
 - `on` as in `onEventName` for component attributes.
 - `handle` as in `handleEventName` for handling child component events.
 
@@ -131,9 +131,9 @@ const onRegistrationSubmit
 const handleRegistrationButtonClick
 ```
 
-# Variables
+## Variables
 
-1. Use the same vocabulary for the same type of variable
+### 1. Use the same vocabulary for the same type of variable
 ```
 // 🚩 Don't
 getUserInfo();
@@ -147,7 +147,7 @@ getUser();
 getClient();
 ```
 
-2. Use explanatory variables
+### 2. Use explanatory variables
 
 ```
 // 🚩 Don't
@@ -167,7 +167,7 @@ const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-3. Avoid Mental Mapping
+### 3. Avoid Mental Mapping
 - Explicit is better than implicit.
 
 ```
@@ -193,7 +193,7 @@ locations.forEach(location => {
 });
 ```
 
-4. Use default parameters instead of short circuiting or conditionals
+### 4. Use default parameters instead of short circuiting or conditionals
 - Default parameters are often cleaner than short circuiting. Be aware that if you use them, your function will only provide default values for `undefined` arguments. Other "falsy" values such as '', "", false, null, 0, and NaN, will not be replaced by a default value.
 
 ```
