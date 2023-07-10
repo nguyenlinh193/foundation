@@ -1,0 +1,384 @@
+# React Native
+
+### Structure
+
+### 1. Structure the files and folder properly:
+
+- No matter what your application is all about, one basic principle popular in the react ecosystem is keeping all the code-related files and folders into the src folder (source folder) and images or any resource file into the separate assets folder. This src and assets folders are exposed in the root folder as depicted in the below layout (React-Native app)
+
+```
+root/
+├──assets
+├──src/
+|   ├── .../
+|   ├── components/
+│   ├── containers/
+│   ├── screens/
+│   ├── navigation/
+│   ├── utils/
+│   ├── App.tsx
+```
+### 2. Ordering imports in the file
+
+-> Direct React Import
+```
+import React from 'React'
+```
+-> Import external libraries 
+```
+import { View } from 'react-native'
+import { useSelector } from 'react-redux'
+```
+
+-> Import libraries from the same project 
+```
+import { FilterState } from '../../utils/enums'
+import { useSelector } from 'react-redux'
+```
+
+### Naming
+
+### 1. Use JSX extensions for components, screens etc.
+
+### 2. Event and handler naming
+
+on as in onEventName for component attributes
+
+handle as in handleEventName for handling child component events
+
+```
+on/handle + Noun + Action , e.g. onModalMenuToggle
+```
+
+#### 2.1. Functions
+
+Naming your handler functions follows a similar naming convention to the one for event handler attributes. Simply remember that there is a flow being followed here when it comes to the cause and effect. Whereas an event attribute adheres to using the on prefix, we will adjust our handler naming convention so that it proceeds the event by adopting the handle prefix. Thus, the naming convention becomes handleSubjectEvent where Subject is the thing the handler is focused on and Event is the event taking place.
+
+```
+// 🚩 Don't
+const handleSubmit
+
+// ✅ Do
+const handleRegistrationButtonClick
+
+```
+
+#### 2.2. Props
+
+When creating a React component which has a prop that handles something, simply follow the onEvent convention (adding a Subject if applicable).
+
+```
+// 🚩 Don't
+const onSubmit
+
+// ✅ Do
+const onRegistrationSubmit
+```
+
+#### Tying it all together
+
+```
+<SomeComponent
+  onRegistrationSubmit={handleRegistrationButtonClick}
+/>
+```
+
+### 3. Use camelCase for variables and functions:
+
+```
+// 🚩 Don't
+let form_params = {};
+
+function FetchParams() {
+  return {};
+}
+```
+
+```
+// ✅ Do
+let formParams = {};
+
+function fetchParams() {
+  return {};
+}
+```
+
+### 4. Use PascalCase for classes:
+
+```
+// 🚩 Don't
+class product_form {}
+class productForm {}
+```
+
+```
+// ✅ Do
+class ProductForm {}
+```
+
+### 5. Use SCREAMING_SNAKE_CASE for constants:
+
+```
+// 🚩 Don't
+const fetchLimit = 25;
+```
+
+```
+// ✅ Do
+const FETCH_LIMIT = 25;
+```
+
+### 6. Use PascalCase for components and camelCase for their instances:
+
+```
+// 🚩 Don't
+import menuCard from './MenuCard';
+```
+
+```
+// ✅ Do
+import MenuCard from './MenuCard';
+```
+
+```
+// 🚩 Don't
+const MenuIten = <MenuCard />;
+```
+
+```
+// ✅ Do
+const menuItem = <MenuCard />;
+```
+
+### 7. Use camelCase for prop names and PascalCase if the prop value is a React component:
+
+```
+// 🚩 Don't
+<Foo
+  UserName='hello'
+  phone_number={ 12345678 }
+/>
+```
+
+```
+// ✅ Do
+<Foo
+  userName='hello'
+  phoneNumber={ 12345678 }
+  Component={ SomeComponent }
+/>
+```
+
+## Variables
+
+### 1. Use the same vocabulary for the same type of variable
+```
+// 🚩 Don't
+getUserInfo();
+getClientData();
+getCustomerRecord();
+```
+
+```
+// ✅ Do
+getUser();
+getClient();
+```
+
+### 2. Use explanatory variables
+
+```
+// 🚩 Don't
+const address = "One Infinite Loop, Cupertino 95014";
+const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+saveCityZipCode(
+  address.match(cityZipCodeRegex)[1],
+  address.match(cityZipCodeRegex)[2]
+);
+```
+
+```
+// ✅ Do
+const address = "One Infinite Loop, Cupertino 95014";
+const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
+saveCityZipCode(city, zipCode);
+```
+
+### 3. Avoid Mental Mapping
+- Explicit is better than implicit.
+
+```
+// 🚩 Don't
+const locations = ["Austin", "New York", "San Francisco"];
+locations.forEach(l => {
+  //doSomeOtherStuff();
+  // ...
+  // ...
+  // What is `l` for again?
+  callback(l);
+});
+```
+
+```
+// ✅ Do
+const locations = ["Austin", "New York", "San Francisco"];
+locations.forEach(location => {
+  doSomeOtherStuff();
+  // ...
+  // ...
+  callback(location);
+});
+```
+
+### 4. Use default parameters instead of short circuiting or conditionals
+- Default parameters are often cleaner than short circuiting. Be aware that if you use them, your function will only provide default values for `undefined` arguments. Other "falsy" values such as '', "", false, null, 0, and NaN, will not be replaced by a default value.
+
+```
+// 🚩 Don't
+function createUser(name) {
+  const userName = name || "Jun Co";
+  // ...
+}
+```
+
+```
+// ✅ Do
+function createUser(name = "Jun Co") {
+  // ...
+}
+```
+
+5. Use searchable names
+
+```
+// 🚩 Don't
+setTimeout(blastOff, 86400000);
+```
+
+```
+// ✅ Do
+// Declare them as capitalized named constants.
+const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
+
+setTimeout(blastOff, MILLISECONDS_PER_DAY);
+```
+
+# Functions
+
+1. Function arguments
+
+```
+// 🚩 Don't
+function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+
+createMenu("Foo", "Bar", "Baz", true);
+```
+
+```
+// ✅ Do
+function createMenu({ title, body, buttonText, cancellable }) {
+  // ...
+}
+
+createMenu({
+  title: "Foo",
+  body: "Bar",
+  buttonText: "Baz",
+  cancellable: true
+});
+```
+
+2. Remove dead code
+- Dead code is just as bad as duplicate code. There's no reason to keep it in your codebase. If it's not being called, get rid of it! It will still be safe in your version history if you still need it.
+
+```
+// 🚩 Don't
+function oldRequestModule(url) {
+  // ...
+}
+
+function newRequestModule(url) {
+  // ...
+}
+
+const req = newRequestModule;
+inventoryTracker("apples", req, "www.inventory-awesome.io");
+```
+
+```
+// ✅ Do
+function newRequestModule(url) {
+  // ...
+}
+
+const req = newRequestModule;
+inventoryTracker("apples", req, "www.inventory-awesome.io");
+```
+
+# Typescript
+
+1. Naming without `I` prefix and `Type` surfix
+```
+// 🚩 Don't
+interface EducationType {
+  id: string;
+  //...
+}
+
+interface IUser {
+  firstName: string;
+  lastName: string;
+  //...
+}
+```
+
+```
+// ✅ Do
+interface Education {
+  id: string;
+  //...
+}
+
+interface User {
+  firstName: string;
+  lastName: string;
+  //...
+}
+```
+
+2. Interface names and interface member
+- Use PascalCase for interface names.
+- Use camelCase for interface members.
+- Use whole words in names when possible.
+
+```
+// 🚩 Don't
+interface hondaCar {
+  id: string;
+  //...
+}
+
+interface hondaCar {
+  created_at: number;
+  updated_at: number;
+  //...
+}
+```
+
+```
+// ✅ Do
+interface HondaCar {
+  id: string;
+  //...
+}
+
+interface HondaCar {
+  createdAt: number;
+  updatedAt: number;
+  //...
+}
+```
+
