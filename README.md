@@ -1,16 +1,13 @@
-# Nextra Docs Template 
+<p align="center">
+  <a href="https://www.digitalfortress.dev/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://instalent-bucket-s3.s3.ap-southeast-1.amazonaws.com/logo/Digital+Fortress+-+Logo.png">
+      <img alt="Digital Fortress logo" src="https://instalent-bucket-s3.s3.ap-southeast-1.amazonaws.com/logo/Digital+Fortress+-+Logo.png">
+    </picture>    
+  </a>
+</p>
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
-
-[**Live Demo →**](https://nextra-docs-template.vercel.app)
-
-[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
-
-## Quick Start
-
-Click the button to clone this repository and deploy it on Vercel:
-
-[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
+---
 
 ## Local Development
 
@@ -18,6 +15,29 @@ First, run `pnpm i` to install the dependencies.
 
 Then, run `pnpm dev` to start the development server and visit localhost:3000.
 
+
 ## License
 
-This project is licensed under the MIT License.
+This project is Copyright (c) 2023 and onwards Digital Fortress. It is free software and may be redistributed under the terms specified in the [LICENSE] file.
+
+[LICENSE]: /LICENSE
+
+## About
+<a href="https://www.digitalfortress.dev/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://instalent-bucket-s3.s3.ap-southeast-1.amazonaws.com/logo/Digital+Fortress+-+Logo.png">
+    <img alt="Digital Fortress logo" src="https://instalent-bucket-s3.s3.ap-southeast-1.amazonaws.com/logo/Digital+Fortress+-+Logo.png" width="160">
+  </picture>
+</a>
+
+This project is made and maintained by Digital Fortress.
+
+We are an experienced team in R&D, software, hardware, cross-platform mobile and DevOps.
+
+See more of [our projects][projects] or do you need to complete one?
+
+-> [Let’s connect with us][website]
+
+[projects]: https://github.com/digitalfortress-dev
+[website]: https://www.digitalfortress.dev
+
