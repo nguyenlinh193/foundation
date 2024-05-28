@@ -9,5 +9,12 @@
     "type": "page",
     "href": "https://digitalfortress.dev",
     "newWindow": true
-  }
+  },
+  "branding": "Branding",
+  "design": "Design",
+  "development": "Development",
+  "product-management": "Product Management",
+  "production": "Production",
+  "project-management": "Project Management",
+  "team": "Team"
 }
