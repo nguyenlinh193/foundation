@@ -2,15 +2,21 @@
 
 ## Branch name
 ```
-<Task ID>-<Task name>
+<prefix>/<task ID>-<task name>
 ```
-- Task ID: is the Task ID on Redmine or the other task management tool
-- Task name: is the name of the task in KebabCase
+- <b>Prefix</b>: Using prefixes in branch names helps to quickly identify the purpose of the branches. Here are some common types of branches with their corresponding prefixes:
+  - <b>Feature Branches</b>: These branches are used for developing new features. Use the prefix `feature/`. For instance, `feature/login-system`.
+  - <b>Bugfix Branches</b>: These branches are used to fix bugs in the code. Use the prefix `bugfix/`. For example, `bugfix/header-styling`.
+  - <b>Hotfix Branches</b>: These branches are made directly from the production branch to fix critical bugs in the production environment. Use the prefix `hotfix/`. For instance, `hotfix/critical-security-issue`.
+  - <b>Release Branches</b>: These branches are used to prepare for a new production release. Use the prefix `release/`. For example, `release/v1.0.1`.
+  - <b>Documentation Branches</b>: These branches are used to write, update, or fix documentation. Use the prefix `docs/`. For instance, `docs/api-endpoints`.
+- <b>Task ID</b>: is the Task ID on Redmine or the other task management tool
+- <b>Task name</b>: is the name of the task in KebabCase
 
 #### Examples
 - The Redmine task: `#2131 [FE] Implement api add device`
   
-  The branch name: `2131-implement-api-add-device`
+  The branch name: `feature/2131-implement-api-add-device`
 
 ## Commit
 ### Commit message
@@ -64,7 +70,7 @@ Explain the changes you've made
 ```
 ## What?
 I've added support for authentication to implement Key Result 2 of OKR1. It includes
-model, table, controller and test. For more background, see ticket #JIRA-123.
+model, table, controller and test. For more background, see ticket #2131.
 ```
 
 ### Why
@@ -72,7 +78,7 @@ The “why” tells us what business or engineering goal this change achieves
 #### Example
 ```
 ## Why?
-These changes complete the user login and account creation experience. See #JIRA-123 for more information.
+These changes complete the user login and account creation experience. See #2131 for more information.
 ```
 
 ### How
@@ -91,9 +97,9 @@ The testing checklist you can referent [here]()
 ```
 ## What?
 I've added support for authentication to implement Key Result 2 of OKR1. It includes model, table, controller and test. For more background, see ticket
-#JIRA-123.
+#2131.
 ## Why?
-These changes complete the user login and account creation experience. See #JIRA-123 for more information.
+These changes complete the user login and account creation experience. See #2131 for more information.
 ## How?
 This includes a migration, model and controller for user authentication. I'm using Devise to do the heavy lifting. I ran Devise migrations and those are included here.
 ## Testing?
