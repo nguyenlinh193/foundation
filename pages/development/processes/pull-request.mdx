@@ -93,7 +93,7 @@ Some conditions or edge cases were tested and not tested, why they weren't teste
 
 The testing checklist you can referent [here]()
 
-## Example
+### Example
 ```
 ## What?
 I've added support for authentication to implement Key Result 2 of OKR1. It includes model, table, controller and test. For more background, see ticket
@@ -117,4 +117,17 @@ This includes a migration, model and controller for user authentication. I'm usi
 0
 ## Anything Else?
 Let's consider using a 3rd party authentication provider for this, to offload MFA and other considerations as they arise and as the privacy landscape evolves. AWS Cognito is a good option, so is Firebase. I'm happy to start researching this path. Let's also consider breaking this out into its own service. We can then re-use it or share the accounts with other apps in the future.
+```
+
+## Request review Pull Request
+For easy to track and get the notification, we use request review Pull Request via Slack message
+
+The message should tag the reviewer and contain the PR's link, a brief description of this PR
+
+### Example
+```
+Hi @Pha Nguyen
+Please help me review this PR
+PR: https://github.com/digitalfortress-dev/foundation/pull/15
+Description: Define the Pull Request convention
 ```
