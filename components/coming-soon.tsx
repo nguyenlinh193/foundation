@@ -1,0 +1,36 @@
+export default function ComingSoon() {
+  return (
+    <div className="h-[500px]">
+      <div className="m-auto flex h-full w-full flex-col items-center justify-center gap-2">
+        <ComingSoonIcon className="size-24" />
+        <h1 className="text-4xl leading-tight font-bold">Coming Soon 👀</h1>
+        <p className="text-muted-foreground text-center">
+          This page has not been created yet. <br />
+          Stay tuned though!
+        </p>
+      </div>
+    </div>
+  )
+}
+
+const ComingSoonIcon = (props: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="icon icon-tabler icons-tabler-outline icon-tabler-planet"
+      {...props}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18.816 13.58c2.292 2.138 3.546 4 3.092 4.9c-.745 1.46 -5.783 -.259 -11.255 -3.838c-5.47 -3.579 -9.304 -7.664 -8.56 -9.123c.464 -.91 2.926 -.444 5.803 .805" />
+      <path d="M12 12m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+    </svg>
+  )
+}
