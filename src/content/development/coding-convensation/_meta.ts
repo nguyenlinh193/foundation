@@ -11,8 +11,17 @@ import type { MetaRecord } from "nextra"
  **/
 const meta: MetaRecord = {
   index: {
-    href: "/",
-    title: "Introduction",
+    title: "Coding Conventions",
+    display: "hidden", //hide the group index from navigation
+  },
+  "code-comments": {
+    title: "Code Comments",
+  },
+  python: {
+    title: "Python",
+  },
+  terraform: {
+    title: "Terraform",
   },
 }
 

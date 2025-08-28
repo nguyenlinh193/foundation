@@ -11,9 +11,18 @@ import type { MetaRecord } from "nextra"
  **/
 const meta: MetaRecord = {
   index: {
-    href: "/",
-    title: "Introduction",
+    title: "Development Processes",
+    display: "hidden", //hide the group index from navigation
   },
+  "pull-request": {
+    title: "Pull Request",
+  },
+  redmine: {
+    title: "Redmine",
+  },
+  // web: {
+  //   title: "Web",
+  // },
 }
 
 export default meta

@@ -11,13 +11,17 @@ import type { MetaRecord } from "nextra"
  **/
 const meta: MetaRecord = {
   index: {
+    title: "Typescript",
     display: "hidden", //hide the group index from navigation
   },
-  page1: {
-    title: "Page 1 (Example)",
+  "naming-elements": {
+    title: "Naming Elements",
   },
-  page2: {
-    title: "Page 2 (Example)",
+  reactjs: {
+    title: "ReactJS",
+  },
+  "react-native": {
+    title: "React Native",
   },
 }
 

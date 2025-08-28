@@ -11,8 +11,14 @@ import type { MetaRecord } from "nextra"
  **/
 const meta: MetaRecord = {
   index: {
-    href: "/",
-    title: "Introduction",
+    title: "Web Development",
+    display: "hidden", //hide the group index from navigation
+  },
+  nextjs: {
+    title: "NextJS",
+  },
+  reactjs: {
+    title: "ReactJS",
   },
 }
 

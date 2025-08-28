@@ -1,0 +1,62 @@
+# Ticket naming convention
+
+## Concepts and Principles
+
+### Stories
+
+A story is an individual feature or requirement that the client (and business) wants. It is something that is deliverable (i.e. production ready) within a single sprint. A story should use the INVEST acronym.
+
+However, it was also thought that a story is only a starting point for a discussion; it does not have all the information the team may need to complete the job.
+
+### Epics
+
+An epic is a big story. A requirement that is just too big to deliver in a single sprint. Epics need to be broken into smaller deliverables (stories). This helps them support the agile principles (e.g. delivering working software frequently, early continuous delivery, regular reflection).
+
+### Themes
+
+A collection of stories by category. A basket or bucket of stories. By its nature, an epic can also be a theme in itself.
+
+### Tasks
+
+The elements of a story. Stepping stones to take the story to `Done`. Tasks often follow the SMART acronym: specific, measurable, achievable, relevant, time-boxed (although what the letters stand for seems to be hotly debated).
+
+## Naming convention
+
+### Stories and Epics
+
+```
+[<Theme name>] <persona/type of user> <performs action on> <thing>
+```
+
+Example:
+
+- [Authentication] User register new account
+
+### Tasks
+
+#### Bugs
+
+The proposed formats for bug titles are:
+
+```
+1. <person/type of user> can't <perform action/get result they should be able to> (e.g. New User can't view home screen)
+2. When <performing some action/event occurs>, the <system feature> doesn't work
+3. When <persona/type of user> <performs some action>, the <system feature> doesn't work
+4. <system feature> doesn't work
+5. <system feature> should <expected behaviour> but doesn't
+6. <system feature> <is not/does not> <expected behaviour>
+7. <persona/user type> <gets result> but should <get different result>
+8. <quick name>. <one of the formats above> (e.g. “Broken button. New User can't click the Next button on Step 2 of the Wizard”).
+```
+
+#### Tasks
+
+```
+[<Theme name>][<Secondary theme name>] <verb/action> <thing>
+```
+
+Example:
+
+- [Authentication][BE] Implement register API
+- [Authentication][FE] Improve the performance of register screen
+- [Authentication][FE] Rename Sign-up to Register

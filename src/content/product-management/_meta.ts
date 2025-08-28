@@ -11,8 +11,8 @@ import type { MetaRecord } from "nextra"
  **/
 const meta: MetaRecord = {
   index: {
-    href: "/",
-    title: "Introduction",
+    title: "Product Management",
+    display: "hidden", //hide the group index from navigation
   },
 }
 
