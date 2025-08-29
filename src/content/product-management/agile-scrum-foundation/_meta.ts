@@ -11,12 +11,9 @@ import type { MetaRecord } from "nextra"
  **/
 const meta: MetaRecord = {
   index: {
-    title: "Product Management",
+    title: "Agile Scrum Foundation",
     display: "hidden", //hide the group index from navigation
   },
-  "agile-scrum-foundation": {
-    title: "Agile/Scrum Foundation"
-  }
 }
 
 export default meta
