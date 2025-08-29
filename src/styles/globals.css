@@ -3,8 +3,17 @@
 
 :root {
   --x-color-nextra-bg: white;
+  --x-color-primary-600: #0088ff;
 }
 
 .dark {
   --x-color-nextra-bg: black;
+}
+
+mark {
+  background-color: #fef08a; /* Tailwind yellow-200 */
+  color: #000;
+  font-weight: 600;
+  border-radius: 2px;
+  padding: 0 2px;
 }

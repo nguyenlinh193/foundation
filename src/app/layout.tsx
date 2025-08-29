@@ -1,9 +1,7 @@
-import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
-import { Banner, Head } from "nextra/components"
+import Image from "next/image"
 import { Footer, Layout, Navbar } from "nextra-theme-docs"
 import { getPageMap } from "nextra/page-map"
-import Image from "next/image"
 import "../styles/globals.css"
 
 const geistSans = Geist({
@@ -44,8 +42,10 @@ const navbar = (
         </div>
       </div>
     }
-
-    // ... Your additional navbar options
+    projectLink="https://github.com/digitalfortress-dev/foundation"
+    projectIcon={
+      <Image src="/github-mark-light.svg" alt="GitHub" width={24} height={24} />
+    }
   />
 )
 const footer = <Footer>MIT {new Date().getFullYear()} © DF Foundation.</Footer>
@@ -65,7 +65,7 @@ export default async function RootLayout({
         <Layout
           navbar={navbar}
           pageMap={pageMap}
-          docsRepositoryBase="https://github.com/shuding/nextra/tree/main/docs"
+          docsRepositoryBase="https://github.com/digitalfortress-dev/foundation/tree/main"
           footer={footer}
           // ... Your additional layout options
         >
