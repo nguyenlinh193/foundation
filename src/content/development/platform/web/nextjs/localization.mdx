@@ -1,0 +1,236 @@
+---
+title: Next.js Internationalization (i18n)
+---
+
+# Next.js Internationalization (i18n) with next-intl
+
+In this guide you will learn how to set up internationalization (i18n) in your Next.js app.
+
+With Next.js 13, the [App Router](https://nextjs.org/docs/app) along with support for React Server Components was introduced and announced as stable with version 13.4. Following the lead of Next.js, `next-intl` also recommends this paradigm since it increases both simplicity as well as flexibility when it comes to i18n.
+
+## Getting Started
+
+- **[Usage with the App Router](https://next-intl.dev/docs/getting-started/app-router)**
+- **[Usage with the Pages Router](https://next-intl.dev/docs/getting-started/pages-router)**
+
+## Best Practices for Managing Translations with `next-intl`
+
+### 1. Split translation files by feature or page instead of having one large file per locale
+
+#### ✅ Recommended Structure
+
+```
+messages/
+├── en/
+│   ├── home.json
+│   ├── auth.json
+│   ├── common.json
+│   └── settings.json
+└── vi/
+    ├── home.json
+    ├── auth.json
+    ├── common.json
+    └── settings.json
+```
+
+#### ❌ Not Recommended Structure
+
+```
+messages/
+├── en.json
+└── vi.json
+```
+
+#### Benefits of the Recommended Structure
+
+| Benefit                    | Explanation                                                        |
+| -------------------------- | ------------------------------------------------------------------ |
+| ✅ Modular and organized   | Each file maps to a specific feature or page (e.g., Home, Auth)    |
+| ✅ Easy to scale           | As you add more pages, just add more message files without clutter |
+| ✅ Easier collaboration    | Developers and translators can focus only on relevant sections     |
+| ✅ Cleaner version control | Smaller files reduce merge conflicts when working in teams         |
+| ✅ Enables lazy loading    | You can load only the required message files per route if needed   |
+
+### Setup Instructions
+
+#### Step 1: Example `common.json` (shared UI labels)
+
+Messages represent the translations that are available per language and can be provided either locally or loaded from a remote data source.
+
+The simplest option is to add JSON files in your local project folder:
+
+**messages/en/common.json**
+
+```json
+{
+  "nav": {
+    "home": "Home",
+    "settings": "Settings"
+  },
+  "buttons": {
+    "submit": "Submit",
+    "cancel": "Cancel"
+  }
+}
+```
+
+**messages/vi/common.json**
+
+```json
+{
+  "nav": {
+    "home": "Trang chủ",
+    "settings": "Cài đặt"
+  },
+  "buttons": {
+    "submit": "Gửi",
+    "cancel": "Hủy"
+  }
+}
+```
+
+#### Step 2: `next.config.ts`
+
+Now, set up the plugin which creates an alias to provide a request-specific i18n configuration like your messages to Server Components—more on this in the following steps.
+
+Go to official documentation for more details: [next.config.ts](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing#next-config)
+
+#### Step 3: `src/i18n/routing.ts`
+
+Go to official documentation for more details: [src/i18n/routing.ts](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing#i18n-routing)
+
+#### Step 4: `src/i18n/navigation.ts`
+
+Go to official documentation for more details: [src/i18n/navigation.ts](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing#i18n-navigation)
+
+#### Step 5: `src/middleware.ts`
+
+Go to official documentation for more details: [src/middleware.ts](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing#middleware)
+
+#### Step 6: `src/i18n/request.ts`
+
+When using features from `next-intl` inside Server Components, the internationalization setup is automatically loaded from a central configuration file located at `src/i18n/request.ts`.
+
+By convention, this file is responsible for providing locale-aware configuration scoped to the current request. When you use a modular file structure (e.g. splitting messages into `home.json`, `auth.json`, etc.), this module can dynamically import and combine those files:
+
+```ts
+import { getRequestConfig } from "next-intl/server"
+import { hasLocale } from "next-intl"
+import { routing } from "./routing"
+
+export default getRequestConfig(async ({ requestLocale }) => {
+  const requested = await requestLocale
+  const locale = hasLocale(routing.locales, requested)
+    ? requested
+    : routing.defaultLocale
+
+  // Load split message files and merge
+  const common = (await import(`../../messages/${locale}/common.json`)).default
+  const home = (await import(`../../messages/${locale}/home.json`)).default
+  const auth = (await import(`../../messages/${locale}/auth.json`)).default
+
+  const messages = {
+    ...common,
+    ...home,
+    ...auth,
+  }
+
+  return {
+    locale,
+    messages,
+  }
+})
+```
+
+#### Step 7: `src/app/[locale]/layout.tsx`
+
+Go to official documentation for more details: [src/app/[locale]/layout.tsx](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing#layout)
+
+#### Step 8: `src/app/[locale]/page.tsx`
+
+Go to official documentation for more details: [src/app/[locale]/page.tsx](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing#page)
+
+That's all it takes!
+
+> **💡 Key Benefits:**
+>
+> - Supports modular translation files per page or feature
+> - Keeps translations organized and scalable
+> - Ensures the right messages are loaded for each request
+> - Works seamlessly with Server Components
+
+### 2. Translation Key Naming Convention
+
+A well-structured translation system is essential for building scalable and maintainable multilingual applications. Below is a recommended convention for naming translation keys when using next-intl, especially with split JSON files per feature or page.
+
+> **✅ Recommended Key Naming Convention**
+>
+> Since each file is already scoped by context, keys inside the file should use nested groupings, but do not need a redundant namespace prefix.
+
+#### ✅ Good Example – auth.json:
+
+```json
+{
+  "form": {
+    "email": "Email",
+    "password": "Password"
+  },
+  "button": {
+    "login": "Login",
+    "register": "Register"
+  },
+  "error": {
+    "invalid": "Invalid email or password"
+  }
+}
+```
+
+**📦 In your code:**
+
+```ts
+import {useTranslations} from 'next-intl';
+
+const t = useTranslations('auth');
+
+<Form.Input label={t('form.email')} />
+<Form.Input label={t('form.password')} />
+```
+
+#### ❌ Bad Examples
+
+**Flat and long keys with manual namespacing:**
+
+```json
+{
+  "auth_form_email": "Email",
+  "auth_button_login": "Login"
+}
+```
+
+**Issues:**
+
+- ❌ Verbose and repetitive
+- ❌ Difficult to manage and group logically
+- ❌ Weak IDE support
+
+**Redundant nesting with filenames:**
+
+```json
+{
+  "Auth": {
+    "form": {
+      "email": "Email"
+    }
+  }
+}
+```
+
+**Issues:**
+
+- ❌ Duplicates the file context (file is already `auth.json`)
+- ❌ Requires `t('Auth.form.email')` instead of `t('form.email')`
+- ❌ Harder to scan visually
+
+## References
+
+- [`next-intl`](https://next-intl.dev/) — Internationalization for Next.js
